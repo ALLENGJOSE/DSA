@@ -1,0 +1,17 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        
+        Set<Integer> result=new HashSet<>();
+
+        for(int num:nums){
+            if(result.contains(num)){
+                return num;
+            }else{
+                result.add(num);
+            }
+        }
+        return -1;
+    }
+}
+TC:O(N)
+SC:O(N)
