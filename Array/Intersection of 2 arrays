@@ -1,0 +1,42 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        
+        Set<Integer> set= new HashSet<>();
+        for(int n2:nums2){
+            set.add(n2);
+        }
+        ArrayList<Integer> list=new ArrayList<>();//bcz rn idk how many common elements are present in both
+        for(int n1:nums1){
+            if(set.contains(n1)){
+                list.add(n1);
+                set.remove(n1);
+            }
+        }
+        int result[]=new int[list.size()];
+        for(int i=0;i<list.size();i++){
+            result[i]=list.get(i);
+        }
+        return result;
+    }
+}
+✅ Time Complexity (TC):
+	1.	for(int n2 : nums2) → O(m)
+→ inserting all elements of nums2 into a HashSet (where m = nums2.length)
+	2.	for(int n1 : nums1) → O(n)
+→ checking and removing elements from the set (each contains() and remove() is O(1) on average)
+	3.	for(int i = 0; i < list.size(); i++) → O(k)
+→ copying list elements to the result array (k ≤ min(n, m))
+
+📊 Total Time Complexity:
+👉 O(n + m)
+(since O(k) is small compared to n and m)
+
+⸻
+
+💾 Space Complexity (SC):
+	•	HashSet → O(m) (stores all elements of nums2)
+	•	ArrayList → O(k) (stores common elements)
+
+📊 Total Space Complexity:
+👉 O(m + k)
+→ or simplified as O(n) in the worst case.
