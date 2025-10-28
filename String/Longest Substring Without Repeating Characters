@@ -1,0 +1,25 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        
+        Set<Character> charSet=new HashSet<>();
+
+        int maxLen=0;
+        int left=0;
+
+        for(int right=0;right<s.length();right++){
+
+            while(charSet.contains(s.charAt(right))){
+                charSet.remove(s.charAt(left));
+                left++;
+            }
+            charSet.add(s.charAt(right));
+            maxLen=Math.max(maxLen,right-left+1);
+        }
+        return maxLen;
+    }
+}
+Time Complexity (TC): O(n)
+ Space Complexity (SC): O(min(n, m))
+	•	n = length of the string.
+	•	m = size of the character set (for ASCII, at most 128 or 256).
+	•	The HashSet stores at most one of each unique character in the window → O(min(n, charset_size)).
