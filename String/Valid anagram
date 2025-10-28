@@ -1,0 +1,59 @@
+Brute Force:
+Sorting
+
+        char[] arrayS=s.toCharArray();
+        char[] arrayT=t.toCharArray();
+
+        Arrays.sort(arrayS);
+        Arrays.sort(arrayT);
+
+        return Arrays.equals(arrayS,arrayT); // compares same contents
+TC:O(NLOGN)
+SC:O(N)
+
+OPTIMIZED APPROACH:
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        
+        s=s.toLowerCase();//convert both to lowercase to ignore case match
+        t=t.toLowerCase();
+
+        s=s.replace(" ","");// remove whitespaces
+        t=t.replace(" ","");
+
+        int[] counts =new int[26]; // initialize the bucket array
+
+        for(int i=0;i<s.length();i++){
+            counts[s.charAt(i)-'a']++;
+        }
+        for(int i=0;i<t.length();i++){
+            counts[t.charAt(i)-'a']--;
+        }
+        for(int count:counts){
+            if(count!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+⏱ Time Complexity (TC)
+
+Let n = s.length() and m = t.length().
+	1.	toLowerCase() → O(n + m)
+	2.	replace(" ", "") → O(n + m)
+	3.	First loop (increment counts) → O(n)
+	4.	Second loop (decrement counts) → O(m)
+	5.	Final loop (check counts) → O(26) → constant time
+
+✅ Total Time Complexity:
+O(n + m) → simplifies to O(n) if both are same length.
+
+⸻
+
+💾 Space Complexity (SC)
+	•	Fixed array int[26] → constant space, O(1)
+	•	No extra data structures dependent on input size.
+
+✅ Total Space Complexity: O(1)
+
