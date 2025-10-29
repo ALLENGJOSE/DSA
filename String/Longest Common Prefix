@@ -1,0 +1,24 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs==null || strs.length==0){
+            return "";
+        }
+        Arrays.sort(strs);
+        String first = strs[0];
+        String last = strs[strs.length-1];
+
+        int i=0;
+        while(i<first.length() && i<last.length() && first.charAt(i)==last.charAt(i)){
+            i++;
+        }
+        return first.substring(0,i);
+    }
+}
+🕒 Time Complexity
+	•	Sorting: O(n log n) (where n = number of strings)
+	•	Comparing first and last: O(m) (where m = length of smallest string)
+
+So total = O(n log n + m)
+
+💾 Space Complexity
+	•	O(1) (ignoring sorting’s internal space)
