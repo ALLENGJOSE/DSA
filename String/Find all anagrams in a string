@@ -1,0 +1,31 @@
+ List<Integer> result = new ArrayList<>();
+        if (s.length() < p.length()) return result;
+
+        int[] pCount = new int[26];
+        int[] sCount = new int[26];
+
+        // Count frequency of chars in p
+        for (char c : p.toCharArray()) {
+            pCount[c - 'a']++;
+        }
+
+        int window = p.length();
+
+        for (int i = 0; i < s.length(); i++) {
+            // Add current character to window count
+            sCount[s.charAt(i) - 'a']++;
+
+            // Remove char left out of window
+            if (i >= window) {
+                sCount[s.charAt(i - window) - 'a']--;
+            }
+
+            // Compare frequency arrays
+            if (Arrays.equals(pCount, sCount)) {
+                result.add(i - window + 1);
+            }
+        }
+
+        return result;
+TC:O(N)
+SC:O(1)
