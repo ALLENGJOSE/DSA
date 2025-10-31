@@ -1,0 +1,33 @@
+check if a sequence of moves (using <, >, ^, and v) makes the robot trace a rectangle and come back to its starting point.
+
+Soln:
+public boolean solution(String moves) {
+    int x = 0, y = 0;
+    int left = 0, right = 0, up = 0, down = 0;
+
+    for (int i = 0; i < moves.length(); i++) {
+        char c = moves.charAt(i);
+        if (c == '>') {
+            x++;
+            right++;
+        } else if (c == '<') {
+            x--;
+            left++;
+        } else if (c == '^') {
+            y++;
+            up++;
+        } else if (c == 'v') {
+            y--;
+            down++;
+        }
+    }
+
+    // To form a rectangle:
+    // 1. Robot must return to starting point (x == 0, y == 0)
+    // 2. It must have moved in both x and y directions
+    if (x == 0 && y == 0 && left > 0 && right > 0 && up > 0 && down > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
