@@ -1,3 +1,5 @@
+Given a string consisting of digits (e.g., "50552"), find the largest 2-digit number that appears as a consecutive fragment in the string.
+
 public int solution(String s) {
 int max=0;
 
