@@ -1,0 +1,68 @@
+Brute Force:
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+       Stack<Integer> s= new Stack<>();
+       ListNode temp=head;
+
+       //fill in the stack
+       while(temp!=null){
+        s.push(temp.val);
+        temp=temp.next;
+       }
+       //keep popping out 
+       temp=head;
+       while(temp!=null){
+        if(temp.val!=s.pop()){
+            return false;
+        }
+        temp=temp.next;
+       }
+    return true;
+    }
+}
+TC:O(N)
+SC:O(N)
+
+Optimized approach:
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        
+        ListNode fast=head, slow=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        if(fast!=null){ // for odd nodes
+            slow=slow.next;
+        }
+
+        //reverse the second half
+        slow=reverseList(slow);
+        fast=head;
+
+        while(slow!=null){
+            if(fast.val!=slow.val){
+                return false;
+            }
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return true;
+    }
+
+    private ListNode reverseList(ListNode head){
+        ListNode prev=null;
+        ListNode curr=head;
+
+        while(curr!=null){
+            ListNode nextNode=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=nextNode;
+        }
+        return prev;
+    }
+}
+TC:O(N)
+SC:O(1)
+
