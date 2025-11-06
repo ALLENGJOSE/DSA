@@ -1,0 +1,48 @@
+Reverse only the even digits in the number 421536, leave odd digits in the place.
+
+input:421536
+even digits:2,4,6 reversed:6,4,2
+
+String.valueOf(num)
+Converts a number → String
+Integer.parseInt(str)
+Converts a String → number
+
+public class Main {
+
+    public static int reverseEvenDigits(int num) {
+        String str = String.valueOf(num);
+        StringBuilder evens = new StringBuilder();
+        
+        // Step 1: Collect all even digits
+        for (char ch : str.toCharArray()) {
+            int d = ch - '0';
+            if (d % 2 == 0) {
+                evens.append(d);
+            }
+        }
+        
+        // Step 2: Reverse collected evens
+        evens.reverse();
+        
+        StringBuilder result = new StringBuilder();
+        int evenIndex = 0;
+        
+        // Step 3: Replace even digits with reversed order
+        for (char ch : str.toCharArray()) {
+            int d = ch - '0';
+            if (d % 2 == 0) {
+                result.append(evens.charAt(evenIndex));
+                evenIndex++;
+            } else {
+                result.append(ch);
+            }
+        }
+        
+        return Integer.parseInt(result.toString());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(reverseEvenDigits(421536)); // Output: 641532
+    }
+}
