@@ -1,0 +1,14 @@
+given a number where even digits should be replaced with their squares and odd digits should be kept the same, reflect the output in the same manner.
+
+public static string transformnumber(String num){
+StringBuilder result=new StringBuilder();
+for(char ch:num.toCharArray()){
+int d= ch-'0';
+if(d%2==0){
+result.append(d*d);
+}else {
+result.append(d);
+}
+}
+return result.toString();
+}
